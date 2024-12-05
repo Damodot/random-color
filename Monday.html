@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+            aspect-ratio: 1 / 0.7;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input id="inputer" type="file" onchange="pickPics()">
+    <img src="" id="image" alt="">
+</body>
+</html>
+<script>
+    let pickPics = () => {
+        let myInput = document.getElementById('inputer')
+        console.log(myInput.files[0]);
+        let files = myInput.files[0]
+        
+        let reader = new FileReader()
+        if (files) {
+            reader.readAsDataURL(files)
+        }
+
+        reader.addEventListener('load' , (e) => {
+            let dataUrl = e.target.result
+            image.src = dataUrl
+            image.style.display = "block"
+            console.log(dataUrl);
+            
+        })
+        
+    }
+</script>
